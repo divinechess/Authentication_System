@@ -2,8 +2,8 @@
 
 class LoginController
 {
-    private $username;
-    private $password;
+    protected $username;
+    protected $password;
 
 
     public function __construct($username,$password)
@@ -14,7 +14,7 @@ class LoginController
 
     }
 
-    private function emptyValue():bool{
+    public function emptyValue():bool{
         if(empty($this->username) || empty($this->password)){
             $result = false;
         }else{

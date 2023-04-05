@@ -1,7 +1,26 @@
 <?php
 include('index.html');
+require_once('LoginController.php');
+require_once('LoginModel.php');
+//require_once('login.php');
+
+
+
 $user = $_POST['username'];
 $password = $_POST['password'];
+
+
+
+$logon = New LoginController($user,$password);
+
+if ($logon->emptyValue()) {
+    echo "please fill out form correctly";
+
+}else {
+$loginModel = New LoginModel();
+$result = $loginModel->checkUser($user,$password);
+//echo $result;
+}
 
 ?>
 
@@ -16,7 +35,9 @@ $password = $_POST['password'];
         <label for="password" class="form-label">Enter Password</label>
         <input type="password" class="form-control" id="password" placeholder="Password">
     </div>
-    <button type="button" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary">Login</button>
 </form>
+
+
 
 
