@@ -16,7 +16,7 @@ class SignupController
 
     }
 
-    private function emptyValue(){
+    public function emptyValue(){
         if(empty($this->email) || empty($this->username) || empty($this->password) || empty($this->passconfirm)){
         $result = false;
         }else{
@@ -26,7 +26,7 @@ class SignupController
     }
 
 
-    private function pwdMatch (){
+    public function pwdMatch (){
         if ($this->password !== $this->passconfirm){
             $result = false;
         }else{

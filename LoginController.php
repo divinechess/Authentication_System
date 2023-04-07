@@ -16,9 +16,9 @@ class LoginController
 
     public function emptyValue():bool{
         if(empty($this->username) || empty($this->password)){
-            $result = false;
-        }else{
             $result = true;
+        }else{
+            $result = false;
         }
         return $result;
     }
