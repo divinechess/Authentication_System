@@ -25,10 +25,11 @@ if (!$signupControl->pwdMatch()){
 
 }else{
    $register = new Register();
-   if(!$register->checkUser($user,$email)){
+   if($register->checkUser($user,$email)){
         echo "These login details are already taken on our system";
 
    }else{
+       $register->registerUser($user,$password,$email);
        echo "your details have been registered";
        header('login.php');
    }
