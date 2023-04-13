@@ -7,7 +7,7 @@ protected function Connect (){
      $username = "root";
      $password = "";
      $db = new PDO('mysql:host=localhost;dbname=authsystem',$username,$password);
-    // echo var_dump($db);
+     // echo var_dump($db);
      return $db;
     }
     catch (PDOException $e){

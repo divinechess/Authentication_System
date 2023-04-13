@@ -2,28 +2,38 @@
 include('index.html');
 require_once('LoginController.php');
 require_once('LoginModel.php');
-//require_once('login.php');
 
 
 
-$user = $_POST['username'];
-$password = $_POST['password'];
+
+@$user = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+$user = filter_var($user, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => "/^[a-zA-Z0-9]+$/")));
+
+@$password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+$password = filter_var($password, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => "/^[a-zA-Z0-9]+$/")));
+
+
+
 
 
 
 $logon = New LoginController($user,$password);
 
 if ($logon->emptyValue()) {
-    echo "please fill out all fields correctly";
+    echo "Please fill out all fields correctly";
+    echo "<br>";
 
-}else {
+}
+if ($logon->pwdLength()) {
+    echo "The Length of the username or password is a minimum of 8";
+    echo "<br>";
+}
 $loginModel = New LoginModel();
 $result = $loginModel->checkUser($user,$password);
 echo $result;
-}
+
 
 ?>
-
 
 <form action="login.php" method="post">
     <div class="mb-3">
@@ -37,6 +47,7 @@ echo $result;
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
+
 
 
 

@@ -10,9 +10,6 @@ $user = $_POST['username'];
 $password = $_POST['password'];
 $passconfirm = $_POST['passconfirm'];
 
-echo $password;
-echo "<BR>";
-echo $passconfirm;
 
 $signupControl = new SignupController($email,$user,$password,$passconfirm);
 
@@ -25,7 +22,7 @@ if (!$signupControl->pwdMatch()){
 
 }else{
    $register = new Register();
-   if($register->checkUser($user,$email)){
+   if(!$register->checkUser($user,$email)){
         echo "These login details are already taken on our system";
 
    }else{
@@ -58,7 +55,7 @@ if (!$signupControl->pwdMatch()){
         <label for="passconfirm" class="form-label">Confirm Password</label>
         <input type="password" name="passconfirm" class="form-control" id="passconfirm" placeholder=" Confirm Password">
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>
 
 

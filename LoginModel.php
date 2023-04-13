@@ -16,7 +16,7 @@ class LoginModel extends DBConnect
         }else{
             $result = false;
         }
-
+        return $result;
 
     }
 
